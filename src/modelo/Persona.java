@@ -11,6 +11,7 @@ package modelo;
  */
 public class Persona {
     private int id;
+    private String numAfiliacion;
     private String nombre;
     private String apellido;
     private int edad;
@@ -19,21 +20,23 @@ public class Persona {
     
     public Persona(){}
 
-    public Persona(int id, String nombre, String apellido, int edad, String profesion, boolean estado) {
+    public Persona(int id,String numAfiliacion, String nombre, String apellido, int edad, String profesion, boolean estado) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
         this.profesion = profesion;
         this.estado = estado;
+        this.numAfiliacion=numAfiliacion;
     }
 
-    public Persona(String nombre, String apellido, int edad, String profesion, boolean estado) {
+    public Persona(String nombre, String apellido, int edad, String profesion, boolean estado,String numAfiliacion) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
         this.profesion = profesion;
         this.estado = estado;
+        this.numAfiliacion=numAfiliacion;
     }
 
     public int getId() {
@@ -82,6 +85,14 @@ public class Persona {
 
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+
+    public String getNumAfiliacion() {
+        return numAfiliacion;
+    }
+
+    public void setNumAfiliacion(String numAfiliacion) {
+        this.numAfiliacion = numAfiliacion;
     }
     
     
