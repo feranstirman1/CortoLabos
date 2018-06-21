@@ -133,4 +133,8 @@ public class Consulta extends JFrame {
         tm.addColumn("Estado");
     }
     
+    public void eventos(){
+        
+    }
+    
 }
