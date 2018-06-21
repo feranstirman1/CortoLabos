@@ -67,7 +67,70 @@ public class Consulta extends JFrame {
     }
     
     public final void agregarLabels(){
+        lblApellido=new JLabel("Apellido");
+        lblNombre=new JLabel("Nombre");
+        lblEdad=new JLabel("Edad");
+        lblNumAfiliacion=new JLabel("Num Afiliacion");
+        lblEstado=new JLabel("Estado");
+        lblProfesion=new JLabel("Profesion");
+        lblApellido.setBounds(200, 30, ANCHOC, ALTOC);
+        lblEdad.setBounds(WIDTH, WIDTH, WIDTH, HEIGHT);
+        lblEstado.setBounds(WIDTH, WIDTH, WIDTH, HEIGHT);
+        lblNombre.setBounds(WIDTH, WIDTH, WIDTH, HEIGHT);
+        lblNumAfiliacion.setBounds(0, 0, ANCHOC, ALTOC);
+        lblProfesion.setBounds(WIDTH, WIDTH, WIDTH, HEIGHT);
+    }
+    
+    public final void formulario(){
+        numAfiliacion= new JTextField();
+        nombre= new JTextField();
+        apellido=new JTextField();
+        edad=new JTextField();
+        profesion=new JComboBox();
+        si=new JRadioButton("si",true);
+        no=new JRadioButton("no");
+        resultados= new JTable();
+        table= new JPanel();
+        insertar= new JButton("Insertar");
+        actualizar=new JButton("Actualizar");
+        buscar=new JButton("Buscar");
+        eliminar=new JButton("Eliminar");
+        vaciar= new JButton("Vaciar");
         
+        profesion.addItem("Ingeniero");
+        profesion.addItem("Mecanico");
+        profesion.addItem("Profesor");
+        profesion.addItem("Arquitecto");
+        
+        existencia= new ButtonGroup();
+        existencia.add(si);
+        existencia.add(no);
+                
+    }
+    
+    public void llenarTabla(){
+        tm=new DefaultTableModel(){
+            public Class<?> getColumnClass(int column){
+                switch(column){
+                    case 0:
+                        return String.class;
+                    case 1:
+                        return String.class;
+                    case 2:
+                        return String.class;
+                    case 3:
+                        return String.class;
+                    default:
+                        return Boolean.class;
+                        
+                }
+            }
+        };
+        tm.addColumn("Nombre");
+        tm.addColumn("Apellido");
+        tm.addColumn("Edad");
+        tm.addColumn("Profesion");
+        tm.addColumn("Estado");
     }
     
 }
