@@ -191,10 +191,13 @@ public class Consulta extends JFrame {
     }
     
     public static void main(String[] args){
+        
+        System.out.println("esto corre?");
         java.awt.EventQueue.invokeLater(new Runnable(){
         
             @Override
             public void run(){
+                System.out.println("esto corre");
                 new Consulta().setVisible(true);
             }
             
