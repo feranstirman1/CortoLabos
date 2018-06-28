@@ -122,7 +122,7 @@ public class Consulta extends JFrame {
         edad.setBounds(130, 60, WIDTH, HEIGHT);
         
         si.setBounds(130, 120, 50, HEIGHT);
-        si.setBounds(180, 120, 50, HEIGHT);
+        no.setBounds(190, 120, 50, HEIGHT);
         
         insertar.setBounds(0, 150, WIDTH, HEIGHT);
         actualizar.setBounds(130, 150, WIDTH, HEIGHT);
