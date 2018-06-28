@@ -3,19 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cortolabos;
+package cortopoo2;
+
+import vista.Consulta;
 
 /**
  *
  * @author LN710Q
  */
-public class CortoLabos {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+public class CortoPoo2 {
+    
+    public static void main(String[] args){
+        new Consulta().setVisible(true);
     }
     
 }

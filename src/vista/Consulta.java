@@ -41,7 +41,6 @@ public class Consulta extends JFrame {
     
     public Consulta(){
         super("CORTO LABOS");
-        System.out.println("holis");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
         agregarLabels();
@@ -79,7 +78,7 @@ public class Consulta extends JFrame {
         lblNumAfiliacion=new JLabel("Num Afiliacion");
         lblEstado=new JLabel("Estado");
         lblProfesion=new JLabel("Profesion");
-        lblApellido.setBounds(200, 30, WIDTH, HEIGHT);
+        lblApellido.setBounds(300,30, WIDTH, HEIGHT);
         lblEdad.setBounds(0, 60, WIDTH, HEIGHT);
         lblEstado.setBounds(0, 120, WIDTH, HEIGHT);
         lblNombre.setBounds(0, 30, WIDTH, HEIGHT);
@@ -119,7 +118,7 @@ public class Consulta extends JFrame {
         ////////////////////////////////////////////////////////////////////////////////////////
         numAfiliacion.setBounds(130, 0, WIDTH, HEIGHT);
         nombre.setBounds(130, 30, WIDTH, HEIGHT);
-        apellido.setBounds(330, 30, WIDTH, HEIGHT);
+        apellido.setBounds(430, 30, WIDTH, HEIGHT);
         edad.setBounds(130, 60, WIDTH, HEIGHT);
         
         si.setBounds(130, 120, 50, HEIGHT);
@@ -133,7 +132,7 @@ public class Consulta extends JFrame {
         
         profesion.setBounds(130, 90, WIDTH, HEIGHT);
         
-        table.setBounds(0, 170, 500, 200);
+        table.setBounds(0, 180, 500, 200);
         table.add(new JScrollPane(resultados));
                 
     }
@@ -184,20 +183,109 @@ public class Consulta extends JFrame {
                     p.setEstado(false);
                 }
                 
-                llenarTabla();
+                if(fd.create(p)){
+                    System.out.println("se creo con exito");
+                    llenarTabla();
+                }
                 
             }
         });
+        
+        actualizar.addActionListener(new ActionListener(){
+        
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FiltroDao fd=new FiltroDao();
+                Persona p= new Persona(nombre.getText(),apellido.getText(),Integer.parseInt(edad.getText()),profesion.getSelectedItem().toString(),true,numAfiliacion.getText());
+                
+                if(no.isSelected()){
+                    p.setEstado(false);
+                }
+                
+                if(fd.update(p)){
+                    llenarTabla();
+                }
+                
+            }
+        
+        
+        });
+        
+        
+        eliminar.addActionListener(new ActionListener(){
+        
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                FiltroDao fd=new FiltroDao();
+                if(fd.delete(numAfiliacion.getText())){
+                    llenarTabla();
+                }
+                
+            }
+        
+        
+        });
+        
+        vaciar.addActionListener(new ActionListener(){
+        
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                limpiarCampos();
+            }
+        
+        
+        });
+        
+       buscar.addActionListener(new ActionListener(){
+        
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                FiltroDao fd= new FiltroDao();
+                Persona p=fd.read(numAfiliacion.getText());
+                if(p==null){
+                    JOptionPane.showMessageDialog(null, "el filtro no se ha encontrado");
+                }
+                else{
+                    
+                    numAfiliacion.setText(p.getNumAfiliacion());
+                    nombre.setText(p.getNombre());
+                    apellido.setText(p.getApellido());
+                    edad.setText(Integer.toString(p.getEdad()));
+                    profesion.setSelectedItem(p.getProfesion());
+                    
+                    if(p.isEstado()){
+                        si.setSelected(true);
+                    }else{
+                        no.setSelected(true);
+                    }
+                    
+                }
+            }
+        
+        
+        });
+        
+        
+    }
+    
+    public void limpiarCampos(){
+        
+        numAfiliacion.setText("");
+        nombre.setText("");
+        apellido.setText("");
+        edad.setText("");
+        
     }
     
     public static void main(String[] args){
         
-        System.out.println("esto corre?");
         java.awt.EventQueue.invokeLater(new Runnable(){
         
             @Override
             public void run(){
-                System.out.println("esto corre");
                 new Consulta().setVisible(true);
             }
             

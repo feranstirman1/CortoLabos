@@ -27,7 +27,7 @@ public class FiltroDao implements metodos<Persona> {
     private static final String SQL_DELETE="DELETE FROM personas WHERE numAfiliacion=?";
     private static final String SQL_READ="SELECT * FROM personas WHERE numAfiliacion=?";
     private static final String SQL_READALL="SELECT * FROM personas";
-    private Conexion con;
+    private Conexion con= Conexion.conectar();
     
     @Override
     public boolean create(Persona g){
